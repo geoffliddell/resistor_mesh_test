@@ -54,6 +54,8 @@ toV <- fromV + N_x
 
 Edges <- data.frame(from = c(fromH, fromV), to = c(toH, toV)) # , weights = rep(1,(2*N_x*N_y - (N_x+N_y))))     
 
+# To test that currents caculated correctly, produced a random set of edge conductances. To get the 10x10 resistor mesh problem again,
+# just insert   Edges$weight <- rep(1, nrow(Edges))
 set.seed(1)
 weight <- rlnorm(n = nrow(Edges), meanlog = 0, sdlog = 1)
 Edges$weight <- weight
@@ -66,7 +68,6 @@ plot(the_graph, layout = lo, directed = FALSE, edge.arrow.size=0)
 
 # solving
 L <- laplacian_matrix(the_graph, weights = weight)
-L[]
 
 # boundary conditions on 68, 12: 
 # draw 1 amp @ 12
